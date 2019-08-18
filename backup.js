@@ -1,5 +1,5 @@
 /*Computer play function. Will return rock, paper or scissors*/
-
+var computerChoice;
 function computerPlay() {
     let rand = Math.floor(Math.random()*3);
     switch(rand) {
@@ -18,50 +18,33 @@ function computerPlay() {
 /*Global variables to hold scores*/
 var playerScore = 0;
 var computerScore = 0;
-/*function that counts scores and logs it to the webpage */
-function points(playerSelection) {
-    const container = document.querySelector('#container');
-    playerScore += 1;
-    const content = document.createElement('div');
-    const points = document.createElement('div');
-    points.textContent = "Playerscore = " + playerScore + " and Computerscore =" + computerScore;
-    content.textContent = "You Win! " + playerSelection + " beats Scissors";
-    container.appendChild(content);
-    container.appendChild(points);
-}
-function pointsPc(computerSelection, playerSelection) {
-    const container = document.querySelector('#container');
-    computerScore += 1;
-    const content = document.createElement('div');
-    const points = document.createElement('div');
-    points.textContent = "Playerscore = " + playerScore + " and Computerscore =" + computerScore;
-    content.textContent = "You Lose! " + computerSelection + " beats " +playerSelection;
-    container.appendChild(content);
-    container.appendChild(points);
-}
 
 /*Function that checks whether the computer og player wins, and updates the score accordingly by 1 */
 function playRound(playerSelection, computerSelection){
         if (playerSelection.toLowerCase() == 'rock' && computerSelection == 'Scissors' ) {
-           points(playerSelection);
+            playerScore += 1;
+            console.log("Playerscore = " + playerScore + " and Computerscore " + computerScore)
+            return "You Win! Rock beats Scissors";
         } else if (playerSelection.toLowerCase() == 'paper' && computerSelection == 'Rock') {
-            points(playerSelection);
+            playerScore += 1;
+            console.log("Playerscore = " + playerScore + " and Computerscore " + computerScore)
+            return "You Win! Paper beats Rock";
         } else if (playerSelection.toLowerCase() == 'scissors' && computerSelection == 'Paper') {
-            points(playerSelection);
+            playerScore += 1;
+            console.log("Playerscore = " + playerScore + " and Computerscore " + computerScore)
+            return "You Win! Scissors beats Paper";
         } else if (playerSelection.toLowerCase() == computerSelection.toLowerCase()) {
-            const container = document.querySelector('#container');
-            const content = document.createElement('div');
-            content.textContent = "It's a tie! " + playerSelection.toLowerCase() + " do not beat " + computerSelection.toLowerCase();
-            container.appendChild(content);
-            
+            return "It's a tie! " + playerSelection.toLowerCase() + " do not beat " + computerSelection.toLowerCase();
         } else {
-            pointsPc(computerSelection, playerSelection);
+            computerScore += 1;
+            console.log("Playerscore = " + playerScore + " and Computerscore " + computerScore)
+            return "You Lose! " + computerSelection.toLowerCase() + " beats " + playerSelection.toLowerCase();
         }
 
     
 }
 /*function that loops the game while either computer score and pc score is below 5, if it exceeds this value the game stops and returns who won. */
-/*function game() {
+function game() {
     while (playerScore < 5 || computerScore < 5) {
         let playerSelection = prompt("Rock, Paper or Scissors?");
         const computerSelection = computerPlay();
@@ -75,4 +58,4 @@ function playRound(playerSelection, computerSelection){
             break;
         } 
     }   
-}*/
+}
